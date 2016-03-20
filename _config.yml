@@ -8,4 +8,11 @@ author: Novatrox
 description: My awesome new site
 paginate: 3
 google_analytics: 
-comments: true
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      comments: true
