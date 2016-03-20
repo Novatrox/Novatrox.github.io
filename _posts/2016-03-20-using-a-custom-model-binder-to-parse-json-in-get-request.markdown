@@ -87,3 +87,9 @@ public IActionResult TranslateSomethingToString(MyCustomRequestModel requestMode
 }
 
 {% endhighlight %}
+
+Just make sure that the structure of the JSON data on the query string matches the structure on the server side (toJSON() in the ES/JS class can be a big help).
+
+{% highlight javascript %}
+/?customData=my-json-string&someBoolean=false
+{% endhighlight %}
