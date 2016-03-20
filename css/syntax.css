@@ -3,6 +3,8 @@ pre
     -moz-tab-size: 2;
     -o-tab-size:   2;
     tab-size:      2;
+    
+    font-size: 75%;
 }
 
 .hll { background-color: #ffffcc }
