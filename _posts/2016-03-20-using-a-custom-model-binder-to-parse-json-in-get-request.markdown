@@ -68,7 +68,7 @@ services.AddMvc().AddMvcOptions(options => {
 });
 {% endhighlight %}
 
-The reason for inserting the Json Querystring modelbinder before the generic model binder, is that otherwise it will take any array properties before we have a chance to try to bind to them.
+The reason for inserting the Json Querystring modelbinder before the generic model binder is that otherwise it will process any array properties before we have a chance to try to bind to them.
 
 With the setup out of the way, we can just use any POCO in a request model, and deserialize JSON from the querystring into the object.
 
