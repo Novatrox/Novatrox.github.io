@@ -119,6 +119,7 @@ strong, .bold {
   text-align: right;
 }
 
+/*
 .measure {
   max-width: 48rem;
 }
@@ -130,6 +131,7 @@ strong, .bold {
 .measure-wide {
   max-width: 60rem;
 }
+*/
 
 .leading-1 {
   line-height: 1.5rem;
