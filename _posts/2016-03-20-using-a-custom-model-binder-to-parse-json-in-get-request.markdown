@@ -8,7 +8,7 @@ comments: true
 ---
 I needed to include the data from a Javascript object in the request to a ASP.NET Core MVC controller, but wanted to use GET as the method. This left me with sending the data on the querystring; however, ASP.NET Core (currently) only parses JSON data from the request body which is empty for a GET request, so I needed something to get the client side data into my server side model.
 
-After searching the web and not finding what I needed, I whipped up a solution based on a custom ModelBinder, which does a naive check if the querystring value is JSON, and then uses JsonConvert to deserialize into the supplied model type.
+After searching the web and not finding what I needed, I whipped up a solution based on a custom ModelBinder, which does a naive check to see if the querystring value is JSON, and then uses JsonConvert to deserialize into the supplied model type.
 
 First we need to implement the actual ModelBinder:
 
