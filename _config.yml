@@ -8,3 +8,4 @@ author: Novatrox
 description: My awesome new site
 paginate: 3
 google_analytics: 
+comments: true
