@@ -72,23 +72,4 @@ The reason for inserting the Json Querystring modelbinder before the generic mod
 
 With the setup out of the way, we can just use any POCO in a request model, and deserialize JSON from the querystring into the object.
 
-{% highlight csharp %}
 
-public class MyCustomRequestModel {
-	public MyCustomObject CustomData { get; set; }
-	public bool SomeBoolean { get; set; }
-}
-
-[HttpGet]
-public IActionResult TranslateSomethingToString(MyCustomRequestModel requestModel) {
-	// Do something with the data
-	return "the result";
-}
-
-{% endhighlight %}
-
-Just make sure that the structure of the JSON data on the query string matches the structure on the server side (toJSON() in the ES/JS class can be a big help).
-
-{ %highlight javascript %}
-/?customData=my-json-string&someBoolean=false
-{% endhighlight %}
