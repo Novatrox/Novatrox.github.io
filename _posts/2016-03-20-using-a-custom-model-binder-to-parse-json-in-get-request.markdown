@@ -1,13 +1,21 @@
 ---
 published: true
-title: Using a custom model binder to parse JSON in GET request
+title: Using a custom model binder in ASP.NET Core to parse JSON in GET request
 layout: post
 comments: true
 
 #linenos
 ---
-{% highlight csharp  %}
+I needed to include the data from an Javascript object in the request to a ASP.NET Core MVC controller, but wanted to use GET as the method. This left me with sending the data on the querystring. However, ASP.NET Core only parses JSON data from the request body, so I needed something to get the client side data into my server side (request) model.
 
+After searching the web and not finding what I needed, I whipped up a solution based on a custom ModelBinder, which does a naive check if the querystring value is JSON, and uses JsonConvert to deserialize into a supplied model type.
+
+First we need to implement the actual ModelBinder:
+
+{% highlight csharp %}
+
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.ModelBinding;
 
 public class JsonQueryStringModelBinder : IModelBinder {
@@ -33,5 +41,47 @@ public class JsonQueryStringModelBinder : IModelBinder {
 		return ModelBindingResult.NoResultAsync;
 	}
 }
+{% endhighlight %}
 
+Then we need to register it with in the MVC ModelBinders collection, in the Startup.ConfigureServices method:
+
+{% highlight csharp %}
+services.AddMvc().AddMvcOptions(options => {
+
+	// ... your configuration
+
+	int i = 0;
+	for(; i < options.ModelBinders.Count; i++) {
+		if(options.ModelBinders[i].GetType() == typeof(GenericModelBinder)) {
+			break;
+		}
+	}
+
+	options.ModelBinders.Insert(i, new JsonQueryStringModelBinder());
+});
+{% endhighlight %}
+
+The reason for inserting the Json Querystring modelbinder before the generic model binder, is that otherwise it will take any array properties before we have a chance to try to bind to them.
+
+With the setup out of the way, we can just use any POCO in a request model, and deserialize JSON from the querystring into the object.
+
+{% highlight csharp %}
+
+public class MyCustomRequestModel {
+	public MyCustomObject CustomData { get; set; }
+	public bool SomeBoolean { get; set; }
+}
+
+[HttpGet]
+public IActionResult TranslateSomethingToString(MyCustomRequestModel requestModel) {
+	// Do something with the data
+	return "the result";
+}
+
+{% endhighlight %}
+
+Just make sure that the structure of the JSON data on the query string matches the structure on the server side (toJSON() in the ES/JS class can be a big help).
+
+{ %highlight javascript %}
+/?customData=my-json-string&someBoolean=false
 {% endhighlight %}
