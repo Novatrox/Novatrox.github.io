@@ -33,5 +33,3 @@ public class JsonQueryStringModelBinder : IModelBinder {
 }
 
 {% endhighlight %}
-
-x: {{post.comments}}
