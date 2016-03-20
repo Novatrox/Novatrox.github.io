@@ -2,6 +2,7 @@
 published: true
 title: Using a custom model binder to parse JSON in GET request
 layout: post
+comments: true
 ---
 {% highlight csharp linenos %}
 
