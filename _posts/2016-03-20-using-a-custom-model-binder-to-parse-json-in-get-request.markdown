@@ -22,18 +22,25 @@ public class JsonQueryStringModelBinder : IModelBinder {
 
 	public Task<ModelBindingResult> BindModelAsync(ModelBindingContext bindingContext) {
 
-		ValueProviderResult valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-		var possibleJson = valueProviderResult.FirstValue as string;
+		ValueProviderResult vpr = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
+		var possibleJson = vpr.FirstValue as string;
 
 		if(!string.IsNullOrEmpty(possibleJson)) {
 
-			if((possibleJson.StartsWith("[{") && bindingContext.ModelType.IsArray) || possibleJson.StartsWith("{")) {
+			if((possibleJson.StartsWith("[{") && bindingContext.ModelType.IsArray) || 
+			  possibleJson.StartsWith("{")) {
 
 				try {
-					return ModelBindingResult.SuccessAsync(bindingContext.ModelName, Newtonsoft.Json.JsonConvert.DeserializeObject(possibleJson, bindingContext.ModelType));
+					return ModelBindingResult.SuccessAsync(
+						bindingContext.ModelName,
+						Newtonsoft.Json.JsonConvert.DeserializeObject(
+							possibleJson,
+							bindingContext.ModelType
+						)
+					);
 
 				} catch(Exception) {
-					// Something wrong with the value
+					// Something wrong with the value, handle or ignore
 				}
 			}
 		}
