@@ -5,6 +5,8 @@ layout: post
 ---
 {% highlight csharp linenos %}
 
+using Microsoft.AspNet.Mvc.ModelBinding;
+
 	public class JsonQueryStringModelBinder : IModelBinder {
 
 		public Task<ModelBindingResult> BindModelAsync(ModelBindingContext bindingContext) {
