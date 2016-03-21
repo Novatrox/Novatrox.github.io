@@ -5,9 +5,17 @@ url: http://devblog.novatrox.se
 title: Novatrox Dev Blog
 email: 
 author: Novatrox
-description: My awesome new site
-paginate: 3
+description: 
+paginate: 5
 google_analytics: 
+
+authors:
+  tkallsen:
+    display_name: Tomas Källsen
+
+  mporttila:
+    display_name: Mikael Porttila
+    twitter: ecodot
 
 defaults:
   -
