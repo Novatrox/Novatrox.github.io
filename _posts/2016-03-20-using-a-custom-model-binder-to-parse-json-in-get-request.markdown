@@ -3,6 +3,7 @@ published: true
 title: Using a custom model binder in ASP.NET Core to parse JSON in GET request
 layout: post
 comments: true
+author: tkallsen
 
 #linenos
 ---
