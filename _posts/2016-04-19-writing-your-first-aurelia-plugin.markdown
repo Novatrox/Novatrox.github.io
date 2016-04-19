@@ -15,14 +15,14 @@ In my application, I wanted to expose an aurelia custom attribute that would be 
 
 A good place to get started is by looking at aurelias skeleton plugin,  [check it out here]( https://github.com/aurelia/skeleton-plugin )
 
-I will try to explain all the parts of that skeleton project below ( as of 2016-04-19 ). Some files are omitted due to its obviousness and are not mentioned in this post.
+I will try to explain all the parts of that skeleton project below ( as of 2016-04-19 ). Some files are omitted due to it's obviousness and are not mentioned in this post.
 <ul>
 <li><b>build/</b> : collection of gulp build scripts to produce output</li>
 <li><b>dist/</b>: output produced by build scripts</li>
 <li><b>doc/</b>: changelog and javascript documentation</li>
 <li><b>src/</b>: sourcesfiles for the plugin </li>
 <li><b>test/</b>: karma test files </li>
-<li><b>karma.conf.js</b>: Karma konfiguration file</li>
+<li><b>karma.conf.js</b>: Karma configuration file</li>
 <li><b>package.json</b>: Package configuration file </li>
 </ul>
 
@@ -95,12 +95,12 @@ export class CustomThumbnailAttribute {
 {% endhighlight %}
 
 
-Ok, so here is our basic custom attribute as they are writting with aurelia. I won't go into how to actually make a thumbnail but I will try to explain where you should write your code.
+Ok, so here is our basic custom attribute as they are written for aurelia. I won't go into how to actually make a thumbnail but I will try to explain where you should write your code.
 
 So first of all we need to import some stuff from aurelia and our config so that we can get a hold of all the default settings provided to us. 
 We also let aurelia know what our custom attribute is called by decoration our class with a ```@customAttribute()``` tag. What aurelia will now do is whenever a element decorated with our thumbnail tag is rendered, it will give us control of this element and let us do stuff to it. Equally when the element is detached from the DOM we have a chance to set right or just unload resources used. Pretty simple and if you want to learn more about writing custom attributes or elements I'd suggest you go to [Aurelia docs]( http://aurelia.io/docs.html#/aurelia/templating/1.0.0-beta.1.2.2/doc/article/templating-custom-attributes).
 
-Its also time to write your karma tests, but I will not go into any detail about that.
+It's also time to write your karma tests, but I will not go into any detail about that.
 
 Now that we have working sourcecode it's time to get our plugin up and running inside aurelia.  For this we need to make sure our sourcecode is building. Make sure you have installed [node](https://nodejs.org/en/) and that gulp is installed globally ```npm install gulp -g```.
 
