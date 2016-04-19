@@ -6,7 +6,6 @@ layout: default
   <span class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</span>
   {{ page.author | split:";" }}
   {% for author in page.author | split:";" %}
-    {% assign author = site.authors[page.author] %}
     {% if author %}
   	  	<span class="author">{{ author.display_name }}</span>
     {% endif %}
